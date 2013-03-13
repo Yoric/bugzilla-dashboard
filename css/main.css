@@ -106,6 +106,10 @@ table, caption {
   border-bottom: 1px black dotted;
 }
 
+#reports div.header, #reports a.bug-row .component {
+  font-size: 8pt;
+}
+
 #reports div.header div {
   text-align: left;
 }

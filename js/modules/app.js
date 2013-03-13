@@ -558,7 +558,9 @@ Require.modules["app/ui/dashboard"] = function(exports, require) {
         row.addClass(bug.severity);
       }
       row.find(".last-changed").attr("data-last-change",
-                                     bug.last_change_time);      
+                                     bug.last_change_time);
+      row.find(".component").text(bug.component);
+      console.log("bug", bug);
       table.append(row);
     }
 
@@ -623,7 +625,7 @@ Require.modules["app/ui/dashboard"] = function(exports, require) {
     }
 
     $(selector).find("h2").addClass("loading");
-    
+
     xhrQueue.enqueue(
       function() {
         return bugzilla.search(
