@@ -102,6 +102,10 @@ table, caption {
   font-weight: bold;
 }
 
+.bug-row.highlight {
+  background-color: red;
+}
+
 #reports div.header, #reports a.bug-row {
   display: table-row;
   border-bottom: 1px black dotted;

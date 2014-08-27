@@ -463,6 +463,10 @@ Require.modules["app/ui/hash"] = function(exports, require) {
 
   }
 
+  exports.getHighlightedBugs = function() {
+    return document.location.searchParams.getAll("highlight");
+  };
+
   exports.usernameToHash = function usernameToHash(username, mentorname) {
     var prefix = "#username=" + escape(username);
     if (mentorname)
@@ -545,6 +549,7 @@ Require.modules["app/ui/dashboard"] = function(exports, require) {
   function showBugs(query, bugs) {
     var table = $("#templates .bugs").clone();
     var rowTemplate = table.find(".bug-row").remove();
+    var highlights = new Set(require("app/ui/hash").getHighlightedBugs());
 
     function appendRowForBug(bug) {
       var row = rowTemplate.clone();
@@ -557,6 +562,10 @@ Require.modules["app/ui/dashboard"] = function(exports, require) {
         row.addClass(bug.priority);
         row.addClass(bug.severity);
       }
+      if (highlights.has("" + bug.id)) {
+        row.addClass("highlight");
+      }
+
       row.find(".last-changed").attr("data-last-change",
                                      bug.last_change_time);
       row.find(".component").text(bug.component);
