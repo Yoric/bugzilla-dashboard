@@ -464,7 +464,7 @@ Require.modules["app/ui/hash"] = function(exports, require) {
   }
 
   exports.getHighlightedBugs = function() {
-    return document.location.searchParams.getAll("highlight");
+    return (new URL(document.location)).searchParams.getAll("highlight");
   };
 
   exports.usernameToHash = function usernameToHash(username, mentorname) {
@@ -700,7 +700,7 @@ Require.modules["app/ui/dashboard"] = function(exports, require) {
             v1: myUsername,
             f2: "flagtypes.name",
             o2: "anywords",
-            v2: "f? r? needinfo?"
+            v2: "f? r? needinfo? sr?"
            });
 
    report("#mentored-bugs", key, forceUpdate,
